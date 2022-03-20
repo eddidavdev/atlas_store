@@ -1,0 +1,11 @@
+<hr>
+<h3>Items</h3>
+<% if order.order_items.count > 0 %>
+  <div id="order_items">
+    <%= render order.order_items%>
+  </div>
+<% else %>
+  <p>
+    No items in shopping cart
+  </p>
+<% end %>

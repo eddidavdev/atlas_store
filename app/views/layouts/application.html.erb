@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <%= yield %>
+    <header>
+      <%= render 'layouts/navbar' %>
+      <h1>Fitness Store</h1>
+      <p>Find all sports products you want</p>
+    </header>
+    <main>
+      <%= render 'layouts/alerts' %>
+      <%= yield %>
+    </main>
+    <footer>
+      <p>Fitness Store's website.</p>
+    </footer>
   </body>
 </html>
