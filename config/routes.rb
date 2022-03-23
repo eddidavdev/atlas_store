@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :discounts
   resources :order_items
   resources :orders
   resources :profiles
   resources :brands do
     resources :products
   end
+  resources :products
   devise_scope :user do
     # Redirests signing out users back to sign-in
     get 'users', to: 'devise/sessions#new'

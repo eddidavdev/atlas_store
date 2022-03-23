@@ -20,4 +20,7 @@
     <%= product.description %>
   </p>
 </div>
-<%= link_to "Add to cart", add_to_cart_path(  product_id: product.id,  quantity: 1)  %>
+<% if @in_brand %>
+  <%= link_to "Edit this product", edit_product_path(product) %>
+  <%= link_to "Add to cart", add_to_cart_path(  product_id: product.id,  quantity: 1)  %>
+<% end %>

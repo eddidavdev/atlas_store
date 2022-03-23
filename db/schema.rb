@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_20_042311) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_21_045007) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -58,13 +58,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_20_042311) do
     t.index ["user_id"], name: "index_brands_on_user_id"
   end
 
+  create_table "discounts", force: :cascade do |t|
+    t.string "name"
+    t.decimal "percent"
+    t.datetime "expiration_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "product_id", null: false
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "amount"
+    t.decimal "true_individual_price", default: "0.0"
+    t.decimal "true_total_price", default: "0.0"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
@@ -75,6 +84,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_20_042311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_current"
+    t.text "description"
+    t.string "phone"
+    t.string "email"
+    t.string "address"
+    t.decimal "total", default: "0.0"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -98,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_20_042311) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "type", default: 0
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -109,6 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_20_042311) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
