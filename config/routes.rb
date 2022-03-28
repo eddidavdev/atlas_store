@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  resources :discounts
+  authenticated :user, ->(user) { user.admin? } do
+    resources :discounts
+    get 'admin', to: 'admin#index'
+    get 'admin/brands'
+    get 'admin/products'
+    get 'admin/discounts'
+    get 'admin/orders'
+    get 'admin/users'
+    get 'admin/profiles'
+  end
+
   resources :order_items
   resources :orders
   resources :profiles

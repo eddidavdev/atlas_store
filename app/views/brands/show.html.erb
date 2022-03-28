@@ -1,7 +1,9 @@
 <%= render @brand %>
 <%= render 'brands/products', brand: @brand %>
-<div>
-  <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
-  <%= link_to "Back to brands", brands_path %>
-  <%= button_to "Destroy this brand", @brand, method: :delete %>
-</div>
+<% if current_user.admin? %>
+  <div>
+    <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
+    <%= link_to "Back to brands", brands_path %>
+    <%= button_to "Destroy this brand", @brand, method: :delete %>
+  </div>
+<% end %>
