@@ -5,6 +5,6 @@
   <%= render brand.products%>
 </div>
 <hr>
-<% if current_user.admin? %>
+<% if  user_signed_in? && current_user.admin? %>
   <%= render "products/new", brand: brand %>
 <% end %>

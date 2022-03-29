@@ -1,6 +1,6 @@
 <%= render @brand %>
 <%= render 'brands/products', brand: @brand %>
-<% if current_user.admin? %>
+<% if user_signed_in? && current_user.admin? %>
   <div>
     <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
     <%= link_to "Back to brands", brands_path %>

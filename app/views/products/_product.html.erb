@@ -21,6 +21,8 @@
   </p>
 </div>
 <% if @in_brand %>
-  <%= link_to "Edit this product", edit_product_path(product) %>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "Edit this product", edit_product_path(product) %>
+  <% end %>
   <%= link_to "Add to cart", add_to_cart_path(  product_id: product.id,  quantity: 1)  %>
 <% end %>

@@ -7,4 +7,6 @@
     </p>
   <% end %>
 </div>
-<%= link_to "New product", new_product_path %>
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to "New product", new_product_path %>
+<% end %>

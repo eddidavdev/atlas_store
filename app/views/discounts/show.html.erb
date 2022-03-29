@@ -1,5 +1,5 @@
 <%= render @discount %>
-<% if current_user.admin? %>
+<% if user_signed_in? && current_user.admin? %>
   <div>
     <%= link_to "Edit this discount", edit_discount_path(@discount) %> |
     <%= link_to "Back to discounts", discounts_path %>
