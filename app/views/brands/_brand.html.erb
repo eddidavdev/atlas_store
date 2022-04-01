@@ -1,19 +1,20 @@
 <div id="<%= dom_id brand %>">
-  <p>
-    <strong>Name:</strong>
-    <%= brand.name %>
-  </p>
-  <p>
-    <strong>Logo:</strong>
-    <%= link_to image_tag(brand.image_as_thumbnail), brand.image if brand.image.attached? %>
-  </p>
-  <p>
-    <strong>
-      <%= pluralize brand.products.count , "product" %>
-    </strong>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= brand.description %>
-  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to image_tag(brand.image_as_thumbnail), brand.image if brand.image.attached? %>
+        </td>
+        <td>
+          <h4><%= brand.name %></h4>
+          <p>
+            <%= pluralize brand.products.count , "product" %> available in catalogue
+          </p>
+          <p>
+            <%= brand.description %>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

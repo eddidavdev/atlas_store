@@ -2,7 +2,34 @@
 <h3>Items</h3>
 <% if order.order_items.count > 0 %>
   <div id="order_items">
-    <%= render order.order_items%>
+    <table>
+      <tbody>
+        <% order.order_items.each do |order_item| %>
+          <tr>
+            <td>
+              <%= link_to image_tag(order_item.product.image_as_thumbnail), order_item.product.image if order_item.product.image.attached? %>
+              <br>
+              <b> <%= order_item.product.name %></b>
+              <%= number_to_currency(order_item.product.price, precision: 2) %>
+            </td>
+            <td>
+              <%= form_with(model: order_item) do |form| %>
+                <div>
+                  <br>
+                  <%= form.number_field :quantity %>
+                  <br>
+                  <%= form.submit "Update"%>
+                </div>
+              <% end %>
+            </td>
+            <td>
+              <% @subtotal = order_item.product.price * order_item.quantity %>
+              <b>Subtotal:</b> <%= number_to_currency( @subtotal, precision: 2)%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 <% else %>
   <p>

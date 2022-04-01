@@ -5,7 +5,7 @@ class Brand < ApplicationRecord
   belongs_to :user
   has_many :products
 
-  def image_as_thumbnail
-    image.variant(resize_to_limit: [300, 300]).processed
+  def image_as_thumbnail(size = 300)
+    image.variant(resize_to_fit: [nil, size]).processed
   end
 end

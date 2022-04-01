@@ -1,2 +1,10 @@
-<%= render @order %>
+<p>
+  <h3>Total:</h3>
+  <%= number_to_currency(@order.subtotal, precision: 2) %>
+  <%= form_with(model: @order) do |form| %>
+    <div>
+      <%= form.submit "Send order"%>
+    </div>
+  <% end %>
+</p>
 <%= render 'orders/order_items', order: @order %>

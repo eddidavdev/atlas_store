@@ -1,0 +1,57 @@
+<% <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to 'Store', root_path, class: "navbar-brand"  %>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+      <%= link_to 'Home', root_path, class: "nav-link active"  %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'About', about_path , class:"nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Brands', brands_path, class:"nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Products', products_path, class:"nav-link" %>
+    </li>
+    <% if current_user %>
+      <li class="nav-item">
+        <%= link_to 'My Orders 🧾', orders_path, class:"nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Cart 🛒', shopping_cart_path, class:"nav-link" %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Manager profile
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><%= link_to "Edit profile", edit_user_registration_path, class:"dropdown-item" %></li>
+          <li><%= link_to "Sign out", destroy_user_session_path, data: {"turbo-method": :delete} , class: "dropdown-item" %></li>
+        </ul>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to 'Sign Up', new_user_registration_path, class:"nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Login', new_user_session_path, class:"nav-link" %>
+      </li>
+    <% end %>
+    <% if user_signed_in? && current_user.admin? %>
+      <li class="nav-item">
+        <%= link_to 'Admin', admin_path, class:"nav-link" %>
+      </li>
+    <% end %>
+  </ul>
+  <form class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</div>
+</div>
+</nav>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :discounts
     get 'admin', to: 'admin#index'
     get 'admin/brands'
+    get 'admin/show_brand/:id', to: 'admin#show_brand', as: 'admin_brand'
     get 'admin/products'
     get 'admin/discounts'
     get 'admin/orders'

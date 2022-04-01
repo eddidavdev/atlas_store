@@ -1,8 +1,26 @@
 <hr>
 <h3>Products</h3>
-<div id="products">
+<div id="products" class="grid-container">
   <% @in_brand = true %>
-  <%= render brand.products%>
+  <% brand.products.each do |product| %>
+    <div  class="grid-item">
+      <%= link_to image_tag(product.image_as_thumbnail 150 ), product %>
+      <h4><%= product.name %></h4>
+      <p>
+        <%= number_to_currency(product.price.to_f, delimiter: '', unit: '$') %>
+        <br>
+        <b>In stock:</b> <%= pluralize product.stock, "unit" %>
+      </p>
+      <p>
+        <%= product.description.to_plain_text.truncate(50) %>
+      </p>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to "Edit this product", edit_product_path(product) %>
+      <% end %>
+      <%= link_to "Add to cart", add_to_cart_path( product_id: product.id,  quantity: 1)  %>
+    </div>
+  <% end %>
+  <%# <%= render brand.products%>
 </div>
 <hr>
 <% if  user_signed_in? && current_user.admin? %>

@@ -1,12 +1,21 @@
 <h1>Brands</h1>
-<div id="brands">
+<div id="brands" class="grid-container">
   <% @brands.each do |brand| %>
-    <%= render brand %>
-    <p>
-      <%= link_to "Show this brand", brand %>
-    </p>
+    <div  class="grid-item">
+      <%= link_to image_tag(brand.image_as_thumbnail 150), brand %>
+      <h4><%= brand.name %></h4>
+      <strong>
+        <%= pluralize brand.products.count , "product" %>
+      </strong>
+      <br>
+      <%= brand.description.to_plain_text.truncate(50) %>
+    </div>
   <% end %>
+  <div  class="grid-item">
+    <h1>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to "New brand", new_brand_path %>
+      <% end %>
+    </h1>
+  </div>
 </div>
-<% if user_signed_in? && current_user.admin? %>
-  <%= link_to "New brand", new_brand_path %>
-<% end %>
