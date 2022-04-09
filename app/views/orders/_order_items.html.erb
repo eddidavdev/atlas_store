@@ -1,35 +1,29 @@
 <hr>
-<h3>Items</h3>
+<h3>Products</h3>
 <% if order.order_items.count > 0 %>
-  <div id="order_items">
-    <table>
-      <tbody>
-        <% order.order_items.each do |order_item| %>
-          <tr>
-            <td>
-              <%= link_to image_tag(order_item.product.image_as_thumbnail), order_item.product.image if order_item.product.image.attached? %>
-              <br>
-              <b> <%= order_item.product.name %></b>
-              <%= number_to_currency(order_item.product.price, precision: 2) %>
-            </td>
-            <td>
-              <%= form_with(model: order_item) do |form| %>
-                <div>
-                  <br>
-                  <%= form.number_field :quantity %>
-                  <br>
-                  <%= form.submit "Update"%>
-                </div>
-              <% end %>
-            </td>
-            <td>
-              <% @subtotal = order_item.product.price * order_item.quantity %>
-              <b>Subtotal:</b> <%= number_to_currency( @subtotal, precision: 2)%>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div id="order_items" class="row col-lg-12">
+    <% order.order_items.each do |order_item| %>
+      <div class="row mb-3">
+        <div class="col-md-2">
+          <%= link_to image_tag(order_item.product.image_as_thumbnail(100), class:"rounded", preserveAspectRatio: "xMidYMid slice"), order_item.product.image  if order_item.product.image.attached? %>
+        </div>
+        <div class="col">
+          <h5 class="card-title"><%= order_item.product.name %></h5>
+          <%= number_to_currency(order_item.product.price, precision: 2) %>
+          <p><%= order_item.product.description.to_plain_text.truncate(85) %></p>
+          <%= form_with(model: order_item, class: "row g-2 align-items-center") do |form| %>
+            <div class="col-auto">
+              <%= form.number_field :quantity, class: "form-control" %>
+            </div>
+            <div class="col-auto">
+              <%= form.submit "Update" , class: "btn btn-secondary"%>
+            </div>
+          <% end %>
+          <% subtotal = order_item.product.price * order_item.quantity %>
+          <b>Subtotal:</b> <%= number_to_currency( subtotal, precision: 2) %>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% else %>
   <p>

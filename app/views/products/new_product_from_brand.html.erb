@@ -1,4 +1,4 @@
-<%= form_with model: [ brand, Product.new ] do |form| %>
+<%= form_with model: @product do |form| %>
   <h4>Add New Product:</h4>
   <p>
     <%= form.label :name %>
@@ -20,5 +20,6 @@
     <%= form.label :description %>
     <%= form.rich_text_area :description %>
   </p>
+  <%= form.hidden_field :brand_id %>
   <%= form.submit %>
 <% end %>

@@ -2,6 +2,10 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_order, only: %i[current add_to_cart]
 
+  def index
+    @orders = current_user.orders.where(is_current: false)
+  end
+
   def current
     @order = @current_order
   end
@@ -17,7 +21,18 @@ class OrdersController < ApplicationController
     redirect_to shopping_cart_url, notice: 'Order was successfully updated.'
   end
 
-  def send_order; end
+  def update
+    @order = Order.find(params[:id])
+    respond_to do |format|
+      if @order.update(params.require(:order).permit(:is_current, :total, :status))
+        format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
+
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+
+      end
+    end
+  end
 
   private
 

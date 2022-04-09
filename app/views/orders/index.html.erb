@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col">
+    <h1>My Orders</h1>
+  </div>
+</div>
+<hr>
+<table class="table col-8">
+  <thead>
+    <tr>
+      <th scope="col">Created At</th>
+      <th scope="col">Updated at</th>
+      <th scope="col">Receiver</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Total</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @orders.size == 0 %>
+      <tr>
+        <td colspan=9>
+          <span>You don't have previous orders</span>
+        </td>
+      </tr>
+    <% end %>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at %></td>
+        <td><%= order.updated_at %></td>
+        <td><%= order.receiver %></td>
+        <td><%= order.phone %></td>
+        <td><%= order.email %></td>
+        <td><%= order.address %></td>
+        <td><%= order.total %></td>
+        <td><%= order.status %></td>
+        <td>
+          <% unless order.cant_update? %>
+            <%= link_to "Edit order", edit_order_path(order), class: "btn btn-primary" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

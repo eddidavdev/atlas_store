@@ -1,21 +1,17 @@
-<h1>Brands</h1>
-<div id="brands" class="grid-container">
+<div class="row row-cols-1 row-cols-sm-2">
+  <div class="col">
+    <h1>Brands</h1>
+  </div>
+  <div class="col">
+    <% if user_signed_in? && current_user.admin? %>
+      <%= link_to "New brand", new_brand_path , class: "btn btn-primary mb-3 float-md-end"%>
+    <% end %>
+  </div>
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
   <% @brands.each do |brand| %>
-    <div  class="grid-item">
-      <%= link_to image_tag(brand.image_as_thumbnail 150), brand %>
-      <h4><%= brand.name %></h4>
-      <strong>
-        <%= pluralize brand.products.count , "product" %>
-      </strong>
-      <br>
-      <%= brand.description.to_plain_text.truncate(50) %>
+    <div class="col">
+      <%= render "brands/brand_card", brand: brand%>
     </div>
   <% end %>
-  <div  class="grid-item">
-    <h1>
-      <% if user_signed_in? && current_user.admin? %>
-        <%= link_to "New brand", new_brand_path %>
-      <% end %>
-    </h1>
-  </div>
 </div>

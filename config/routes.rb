@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :banners
   authenticated :user, ->(user) { user.admin? } do
     resources :discounts
     get 'admin', to: 'admin#index'
@@ -14,9 +15,12 @@ Rails.application.routes.draw do
   resources :order_items
   resources :orders
   resources :profiles
+
   resources :brands do
+    get 'products/new', to: 'products#new_product_from_brand', as: 'new_product_from_brand'
     resources :products
   end
+
   resources :products
   devise_scope :user do
     # Redirests signing out users back to sign-in

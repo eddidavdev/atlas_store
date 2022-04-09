@@ -3,19 +3,20 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
       <th>Logo</th>
       <th>Name</th>
       <th>Owner</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @brands.each do |brand| %>
       <tr>
-        <th><%= brand.id %></th>
-        <td><%= link_to image_tag(brand.image_as_thumbnail), brand.image if brand.image.attached? %></td>
+        <td><%= link_to image_tag(brand.image_as_thumbnail 50), brand.image if brand.image.attached? %></td>
         <td><%= link_to brand.name.truncate(15), admin_brand_path(brand) %></td>
         <td><%= brand.user.email %></td>
+        <td>
+        </td>
       </tr>
     <% end %>
   </tbody>

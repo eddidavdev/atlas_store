@@ -1,20 +1,14 @@
 <div id="<%= dom_id brand %>">
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <%= link_to image_tag(brand.image_as_thumbnail), brand.image if brand.image.attached? %>
-        </td>
-        <td>
-          <h4><%= brand.name %></h4>
-          <p>
-            <%= pluralize brand.products.count , "product" %> available in catalogue
-          </p>
-          <p>
-            <%= brand.description %>
-          </p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row featurette">
+    <div class="col-md-5 order-md-1">
+      <%= link_to image_tag(brand.image_as_thumbnail, class: "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: 500, height: 500, preserveAspectRatio: "xMidYMid slice"), brand.image if brand.image.attached? %>
+    </div>
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading"><%= brand.name %> </h2>
+      <br>
+      <span class="text-muted"><%= pluralize brand.products.count , "product" %> available in catalogue</span>
+      <br>
+      <%= brand.description %>
+    </div>
+  </div>
 </div>

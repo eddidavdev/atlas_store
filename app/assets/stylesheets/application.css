@@ -15,14 +15,14 @@
  */
 
 
- nav .active {
+ /* nav .active {
      font-weight: bold;
  }
 
  .grid-container {
   display: grid;
   gap: 10px 10px;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1FR 1FR 1FR;
   padding: 10px;
 }
 
@@ -31,5 +31,53 @@
   border-radius: 4px;
   padding: 10px;
   text-align: center;
+  
 }
+
  
+.button {
+  border: none;
+  border-radius: 5px;
+  background: #0d47a1;
+  font-size: 1rem;
+  color: #fff !important;
+  padding: 0.7rem 0.9rem;
+  margin: 0.5rem 0;
+  text-decoration: none;
+}
+
+.float-r{
+  float: right;
+} */
+
+body {
+  
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  /* rtl:remove */
+  letter-spacing: -.05rem;
+}
+
+@media (min-width: 40em) {
+  
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}

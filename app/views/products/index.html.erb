@@ -1,12 +1,23 @@
-<h1>Products</h1>
-<div id="products">
+<div class="row row-cols-1 row-cols-sm-2">
+  <div class="col">
+    <h1>Products</h1>
+  </div>
+  <div class="col">
+    <% if user_signed_in? && current_user.admin? %>
+      <%= link_to "New product", new_product_path , class: "btn btn-primary mb-3 float-md-end"%>
+    <% end %>
+  </div>
+</div>
+<hr>
+<div class="row mb-3">
+  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+    <input type="search" class="form-control form-control-dark" placeholder="Search product..." aria-label="Search">
+  </form>
+</div>
+<div id="products" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3 mb-4">
   <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
+    <div  class="col">
+      <%= render "products/product_card", product: product%>
+    </div>
   <% end %>
 </div>
-<% if user_signed_in? && current_user.admin? %>
-  <%= link_to "New product", new_product_path %>
-<% end %>

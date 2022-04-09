@@ -1,9 +1,14 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Brands", brands_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @brand.name %></li>
+  </ol>
+</nav>
 <%= render @brand %>
-<%= render 'brands/products', brand: @brand %>
 <% if user_signed_in? && current_user.admin? %>
   <div>
-    <%= link_to "Edit this brand", edit_brand_path(@brand) %> |
-    <%= link_to "Back to brands", brands_path %>
-    <%= button_to "Destroy this brand", @brand, method: :delete %>
+    <%= link_to "Edit this brand", edit_brand_path(@brand) , class: "btn btn-primary" %>
+    <%= link_to "Destroy this brand", @brand, data: {"turbo-method": :delete} , class: "btn btn-danger"%>
   </div>
 <% end %>
+<%= render 'brands/products', brand: @brand %>
