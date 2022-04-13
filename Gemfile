@@ -74,3 +74,5 @@ end
 gem 'devise'
 
 gem 'mini_magick'
+
+gem "font-awesome-rails"

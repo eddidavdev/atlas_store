@@ -1,14 +1,16 @@
 <div class="card shadow-sm h-100">
-  <%= link_to image_tag(brand.image_as_thumbnail(225), class:"bd-placeholder-img card-img-top", width:'100%', preserveAspectRatio: "xMidYMid slice"), brand.image if brand.image.attached?  %>
+  <%= link_to image_tag(brand.image_as_thumbnail(300), class:"bd-placeholder-img card-img-top", width:'50%', preserveAspectRatio: "xMidYMid slice"), brand.image if brand.image.attached?  %>
   <div class="card-body">
     <h5 class="card-title"><%= brand.name %></h5>
-    <p class="card-text"> <%= brand.description.to_plain_text.truncate(85) %> </p>
+    <p class="card-text"> <%= brand.description.to_plain_text.truncate(32) %> </p>
+    <p><small class="text-muted"><%= pluralize brand.products.count , "product" %> available in catalogue</small></p>
+
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
         <%= link_to "View", brand , class: "btn btn-sm btn-outline-secondary" %>
-        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+        <%= link_to "Edit", edit_brand_path(brand) , class: "btn btn-sm btn-outline-secondary" %>
+        <%= button_to "Delete", brand, method: :delete , class: "btn btn-sm btn-outline-secondary" %>
       </div>
-      <small class="text-muted"><%= pluralize brand.products.count , "product" %> available in catalogue</small>
     </div>
   </div>
 </div>

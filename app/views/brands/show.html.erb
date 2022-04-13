@@ -6,9 +6,11 @@
 </nav>
 <%= render @brand %>
 <% if user_signed_in? && current_user.admin? %>
-  <div>
-    <%= link_to "Edit this brand", edit_brand_path(@brand) , class: "btn btn-primary" %>
-    <%= link_to "Destroy this brand", @brand, data: {"turbo-method": :delete} , class: "btn btn-danger"%>
-  </div>
+  <div class="d-flex justify-content-between align-items-center my-4">
+      <div class="btn-group">
+        <%= link_to "Edit", edit_brand_path(@brand) , class: "btn btn-sm btn-outline-secondary" %>
+        <%= button_to "Delete", @brand, method: :delete , class: "btn btn-sm btn-outline-secondary" %>
+      </div>
+    </div>
 <% end %>
 <%= render 'brands/products', brand: @brand %>
