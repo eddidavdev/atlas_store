@@ -4,6 +4,7 @@
   </div>
 </div>
 <hr>
+<p class="text-muted"> Los pedidos pueden editarse o cancelarse siempre que esten en estado creado.</p>
 <table class="table col-8">
   <thead>
     <tr>
@@ -15,7 +16,7 @@
       <th scope="col">Address</th>
       <th scope="col">Total</th>
       <th scope="col">Status</th>
-      <th scope="col">Action</th>
+      <th colspan=3 scope="col" class="text-center">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -37,8 +38,16 @@
         <td><%= order.total %></td>
         <td><%= order.status %></td>
         <td>
+          <%= link_to "Show", order, class: "btn btn-info" %>
+        </td>
+        <td>
           <% unless order.cant_update? %>
-            <%= link_to "Edit order", edit_order_path(order), class: "btn btn-primary" %>
+            <%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %>
+          <% end %>
+        </td>
+        <td>
+          <% unless order.cant_update? %>
+            <%= link_to "Cancel", cancel_order_path( id: order.id), class: "btn btn-danger"%>
           <% end %>
         </td>
       </tr>

@@ -1,0 +1,10 @@
+<h1>Editing order</h1>
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col"><%= render 'orders/cart_items', order: @order %></div>
+  <div class="col"><%= render "form", order: @order %></div>
+</div>
+<br>
+<div>
+  <%= link_to "Show this order", @order , class: "btn btn-info"%>
+  <%= link_to "Back to orders", orders_path,  class: "btn btn-secondary" %>
+</div>

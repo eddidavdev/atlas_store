@@ -1,10 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_order, only: %i[current add_to_cart]
+  before_action :set_order, only: %i[show edit update cancel]
 
   def index
     @orders = current_user.orders.where(is_current: false)
   end
+
+  def show; end
+
+  def edit; end
 
   def current
     @order = @current_order
@@ -13,7 +18,7 @@ class OrdersController < ApplicationController
   def add_to_cart
     @current_order_item = OrderItem.where(product_id: params[:product_id], order_id: @current_order.id).first
     if @current_order_item.nil?
-      @current_order.order_items.create(order_params)
+      @current_order.order_items.create(new_product_params)
     else
       @current_order_item.quantity += Integer(params[:quantity])
       @current_order_item.save
@@ -22,19 +27,32 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
     respond_to do |format|
-      if @order.update(params.require(:order).permit(:is_current, :total, :status))
+      if @order.update(send_order_params)
         format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
-
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_back fallback_location: root_path, status: :unprocessable_entity }
+      end
+    end
+  end
 
+  def cancel
+    @order.status = 'send'
+
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to orders_path, notice: 'Order was successfully cancelled.' }
+      else
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end
 
   private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
   def set_current_order
     @current_order = Order.where(user_id: current_user.id, status: 'open', is_current: true).first
@@ -45,7 +63,11 @@ class OrdersController < ApplicationController
     end
   end
 
-  def order_params
+  def new_product_params
     params.permit(:product_id, :quantity)
+  end
+
+  def send_order_params
+    params.require(:order).permit(:is_current, :total, :status, :receiver, :phone, :address, :description, :email)
   end
 end

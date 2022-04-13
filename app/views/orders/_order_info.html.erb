@@ -1,0 +1,33 @@
+<div >
+  <h3 class="mb-3">Billing address:</h3>
+  <div class="mb-3">
+    <strong>Receiver:</strong>
+    <span><%= order.receiver %></span>
+  </div>
+  <div class="mb-3">
+    <strong>Phone:</strong>
+    <span><%= order.phone %></span>
+  </div>
+  <div class="mb-3">
+    <strong>Email:</strong>
+    <span><%= order.email %></span>
+  </div>
+  <div class="mb-3">
+    <strong>Address:</strong>
+    <span><%= order.address %></span>
+  </div>
+  <div class="mb-3">
+    <strong>Description:</strong>
+    <span><%= order.description %></span>
+  </div>
+</div>
+<div class="row py-4 g-4 align-items-center ">
+  <div class="col-auto">
+    <h3>Total:</h3>
+  </div>
+  <div class="col-auto">
+    <strong>
+      <%= number_to_currency(order.subtotal, precision: 2) %>
+    </strong>
+  </div>
+</div>

@@ -2,6 +2,6 @@
 <br>
 <div id="order_items">
   <% order.order_items.each do |order_item| %>
-    <%= render order_item %>
+    <%= render "order_items/form", order_item: order_item %>
   <% end %>
 </div>

@@ -1,0 +1,41 @@
+<%= form_with(model: order, class: "") do |form| %>
+  <%= form.hidden_field :status, value: "send" %>
+  <%= form.hidden_field :total, value: order.subtotal %>
+  <%= form.hidden_field :is_current, value: false %>
+  <div >
+    <h3 class="mb-3">Billing address:</h3>
+    <div class="mb-3">
+      <%= form.label :receiver, class: "form-label" %>
+      <%= form.text_field :receiver , class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :phone, class: "form-label" %>
+      <%= form.telephone_field  :phone , class: "form-control"%>
+    </div>
+    <div class="mb-3">
+      <%= form.label :email, class: "form-label" %>
+      <%= form.email_field  :email , class: "form-control"%>
+    </div>
+    <div class="mb-3">
+      <%= form.label :address, class: "form-label" %>
+      <%= form.text_field :address , class: "form-control"%>
+    </div>
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description , class: "form-control"%>
+    </div>
+  </div>
+  <div class="row py-4 g-4 align-items-center ">
+    <div class="col-auto">
+      <h3>Subtotal:</h3>
+    </div>
+    <div class="col-auto">
+      <strong>
+        <%= number_to_currency(order.subtotal, precision: 2) %>
+      </strong>
+    </div>
+    <div class="col-auto">
+      <%= form.submit order.status == "open" ? "Send order" : "Update", class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>

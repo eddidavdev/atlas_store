@@ -1,0 +1,6 @@
+<h1 >Order</h1>
+<br>
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col"><%= render 'orders/order_items', order: @order %></div>
+  <div class="col"><%= render "orders/order_info", order: @order %></div>
+</div>

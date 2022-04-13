@@ -1,22 +1,11 @@
-<h1>My cart</h1>
+<h1 >My cart</h1>
+<br>
 <% if @order.order_items.size > 0 %>
-  <%= form_with(model: @order, class: "row py-4 g-4 align-items-center") do |form| %>
-    <%= form.hidden_field :status, value: "send" %>
-    <%= form.hidden_field :total, value: @order.subtotal %>
-    <%= form.hidden_field :is_current, value: false %>
-    <div class="col-auto">
-      <h3>Subtotal:</h3>
-    </div>
-    <div class="col-auto">
-      <strong>
-        <%= number_to_currency(@order.subtotal, precision: 2) %>
-      </strong>
-    </div>
-    <div class="col-auto">
-      <%= form.submit "Send order", class: "btn btn-success" %>
-    </div>
-  <% end %>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col"><%= render 'orders/cart_items', order: @order %></div>
+    <div class="col"><%= render "form", order: @order %></div>
+  </div>
 <% else %>
-  <%= link_to "Go to shopping", products_path, class: "btn btn-primary" %>
+  <p><span class="text-muted ">No products in cart</span></p>
+  <%= link_to "Continue shopping", products_path, class: "btn btn-primary mb-4" %>
 <% end %>
-<%= render 'orders/order_items', order: @order %>

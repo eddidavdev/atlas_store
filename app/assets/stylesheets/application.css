@@ -51,7 +51,9 @@
 } */
 
 body {
-  
+  display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   padding-bottom: 3rem;
   color: #5a5a5a;
 }
@@ -80,4 +82,9 @@ body {
   .featurette-heading {
     margin-top: 7rem;
   }
+}
+
+
+footer {
+    margin-top: auto;
 }

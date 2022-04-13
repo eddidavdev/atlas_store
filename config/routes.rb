@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'products', to: 'products#index'
   get 'shopping-cart', to: 'orders#current'
   get 'add_to_cart', to: 'orders#add_to_cart'
+  get 'cancel_order', to: 'orders#cancel'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

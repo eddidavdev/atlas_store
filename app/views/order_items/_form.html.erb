@@ -1,4 +1,4 @@
-<div id="<% dom_id(order_item)%>">
+<%= form_with(model: order_item) do |form| %>
   <div class="row mb-3 border-bottom">
     <div class="col-md-4">
       <%= link_to image_tag(order_item.product.image_as_thumbnail(100), class:"rounded", preserveAspectRatio: "xMidYMid slice"), order_item.product.image  if order_item.product.image.attached? %>
@@ -7,10 +7,16 @@
       <h5 class="card-title"><%= order_item.product.name %></h5>
       <%= number_to_currency(order_item.product.price, precision: 2) %>
       <p><%= order_item.product.description.to_plain_text.truncate(85) %></p>
-      <span> <%= pluralize(order_item.quantity, "unit") %> </span>
-      <br>
+      <div class="row g-2 align-items-center">
+        <div class="col-auto">
+          <%= form.number_field :quantity, class: "form-control" %>
+        </div>
+        <div class="col-auto">
+          <%= form.submit "Update" , class: "btn btn-secondary"%>
+        </div>
+      </div>
       <% subtotal = order_item.product.price * order_item.quantity %>
       <b>Subtotal:</b> <%= number_to_currency( subtotal, precision: 2) %>
     </div>
   </div>
-</div>
+<% end %>
