@@ -24,7 +24,7 @@ class BrandsController < ApplicationController
 
     respond_to do |format|
       if @brand.save
-        format.html { redirect_to brand_url(@brand), notice: 'Brand was successfully created.' }
+        format.html { redirect_to brands_url, notice: 'Brand was successfully created.' }
         format.json { render :show, status: :created, location: @brand }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class BrandsController < ApplicationController
       format.html { redirect_to brands_url, notice: 'Brand was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
+  end  
 
   private
 

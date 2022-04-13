@@ -1,7 +1,7 @@
 <div id="<%= dom_id brand %>">
   <div class="row featurette">
     <div class="col-md-5 order-md-1">
-      <%= link_to image_tag(brand.image_as_thumbnail, class: "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: 500, height: 500, preserveAspectRatio: "xMidYMid slice"), brand.image if brand.image.attached? %>
+      <%= link_to image_tag(brand.image_as_thumbnail(300), class: "bd-placeholder-img bd-placeholder-img-md featurette-image img-fluid mx-auto", width: 300, height: 300, preserveAspectRatio: "xMidYMid slice"), brand.image if brand.image.attached? %>
     </div>
     <div class="col-md-7 order-md-2">
       <h2 class="featurette-heading"><%= brand.name %> </h2>
