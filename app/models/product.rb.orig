@@ -1,5 +1,9 @@
 class Product < ApplicationRecord
+<<<<<<< HEAD
+  validates_presence_of [:name,  :image , :description, :stock, :price]
+=======
   validates_presence_of %i[name image description stock price]
+>>>>>>> 4c5865a5df74e099c3dc1c53984b8c9c061a778f
   belongs_to :brand
   broadcasts_to :brand
   has_one_attached :image

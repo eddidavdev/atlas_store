@@ -9,6 +9,7 @@
       <li><%= nav_link 'Brands', brands_path%></li>
       <li><%= nav_link 'Products', products_path %></li>
       <% if user_signed_in? %>
+        <li><%= link_to 'My Profile', current_user.profile , class: "px-2  nav-link text-white"%></li>
         <li><%= nav_link 'My Orders', orders_path %></li>
         <li><%= nav_link 'Cart', shopping_cart_path %></li>
         <% if current_user.admin? %>

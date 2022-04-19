@@ -5,6 +5,8 @@
     </div>
     <div class="col-auto">
       <h5 class="card-title"><%= order_item.product.name %></h5>
+      <%= link_to order_item.product.brand.name, order_item.product.brand %>
+      <br>
       <%= number_to_currency(order_item.product.price, precision: 2) %>
       <p><%= order_item.product.description.to_plain_text.truncate(85) %></p>
       <div class="row g-2 align-items-center">

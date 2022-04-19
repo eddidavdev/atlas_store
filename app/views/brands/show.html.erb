@@ -1,5 +1,7 @@
+<%= turbo_stream_from @brand %>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
     <li class="breadcrumb-item"><%= link_to "Brands", brands_path %></li>
     <li class="breadcrumb-item active" aria-current="page"><%= @brand.name %></li>
   </ol>
@@ -7,10 +9,10 @@
 <%= render @brand %>
 <% if user_signed_in? && current_user.admin? %>
   <div class="d-flex justify-content-between align-items-center my-4">
-      <div class="btn-group">
-        <%= link_to "Edit", edit_brand_path(@brand) , class: "btn btn-sm btn-outline-secondary" %>
-        <%= button_to "Delete", @brand, method: :delete , class: "btn btn-sm btn-outline-secondary" %>
-      </div>
+    <div class="list-group list-group-horizontal">
+      <%= link_to "Edit", edit_brand_path(@brand) , class: "list-group-item list-group-item-action list-group-item-secondary" %>
+      <%= button_to "Delete", @brand, method: :delete , class: "list-group-item list-group-item-action list-group-item-secondary" %>
     </div>
+  </div>
 <% end %>
 <%= render 'brands/products', brand: @brand %>

@@ -1,7 +1,10 @@
-<p style="color: green"><%= notice %></p>
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+    <li class="breadcrumb-item active" aria-current="page">Banners</li>
+  </ol>
+</nav>
 <h1>Banners</h1>
-
 <div id="banners">
   <% @banners.each do |banner| %>
     <%= render banner %>
@@ -10,5 +13,4 @@
     </p>
   <% end %>
 </div>
-
 <%= link_to "New banner", new_banner_path %>

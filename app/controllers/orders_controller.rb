@@ -23,6 +23,11 @@ class OrdersController < ApplicationController
       @current_order_item.quantity += Integer(params[:quantity])
       @current_order_item.save
     end
+    ammount = Integer(new_product_params[:quantity])
+    product = Product.find(new_product_params[:product_id])
+    product.stock -= ammount
+    product.stock = 0 if product.stock.negative?
+    product.save
     redirect_to shopping_cart_url, notice: 'Order was successfully updated.'
   end
 
@@ -37,7 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def cancel
-    @order.status = 'send'
+    @order.status = 'cancelled'
 
     respond_to do |format|
       if @order.save
