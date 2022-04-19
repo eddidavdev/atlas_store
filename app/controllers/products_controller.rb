@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_brands
 
   def index
     @products = Product.all
@@ -11,7 +12,6 @@ class ProductsController < ApplicationController
   # GET /discounts/new
   def new
     @product = Product.new
-    @brands = Brand.find_by(user_id: current_user.id)
   end
 
   # GET /discounts/1/edit
@@ -27,8 +27,10 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product.brand, notice: 'product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
+        format.html do
+          redirect_to params[:in_brand].equal?(true) ? @product.brand : products_url,
+                      notice: 'product was successfully created.'
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -61,6 +63,10 @@ class ProductsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def set_brands
+    @brands = current_user.brands
   end
 
   # Only allow a list of trusted parameters through.

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :brands
   has_many :orders
+  has_one :profile
 
   enum role: %i[user admin]
 

@@ -1,25 +1,9 @@
-<%= form_with model: @product do |form| %>
-  <h4>Add New Product:</h4>
-  <p>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </p>
-  <p>
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </p>
-  <p>
-    <%= form.label :price %>
-    <%= form.number_field :price, value: number_to_currency(form.object.price.to_f, delimiter: '', unit: ''), step: :any %>
-  </p>
-  <p>
-    <%= form.label :stock %>
-    <%= form.number_field :stock %>
-  </p>
-  <p>
-    <%= form.label :description %>
-    <%= form.rich_text_area :description %>
-  </p>
-  <%= form.hidden_field :brand_id %>
-  <%= form.submit %>
-<% end %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+    <li class="breadcrumb-item"><%= link_to @product.brand.name, @product.brand %></li>
+    <li class="breadcrumb-item active" aria-current="page">New product</li>
+  </ol>
+</nav>
+<h1>New product</h1>
+<%= render "form", product: @product %>

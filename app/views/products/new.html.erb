@@ -1,6 +1,9 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+    <li class="breadcrumb-item"><%= link_to "Products", products_path %></li>
+    <li class="breadcrumb-item active" aria-current="page">New product</li>
+  </ol>
+</nav>
 <h1>New product</h1>
 <%= render "form", product: @product %>
-<br>
-<div>
-  <%= link_to "Back to products", products_path %>
-</div>

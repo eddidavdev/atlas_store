@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
+  validates_presence_of %i[name image description stock price]
   belongs_to :brand
+  broadcasts_to :brand
   has_one_attached :image
   has_rich_text :description
 

@@ -1,0 +1,11 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+    <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+  </ol>
+</nav>
+<%= render @profile %>
+<div>
+  <%= link_to "Edit", edit_profile_path(@profile), class: "btn btn-primary mb-3" %>
+  <%= button_to "Destroy", @profile, method: :delete , class: "btn btn-danger"%>
+</div>

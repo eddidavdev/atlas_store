@@ -1,3 +1,10 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+    <li class="breadcrumb-item"><%= link_to "Discounts", discounts_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @discount.name %></li>
+  </ol>
+</nav>
 <%= render @discount %>
 <% if user_signed_in? && current_user.admin? %>
   <div>

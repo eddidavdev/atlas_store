@@ -8,21 +8,21 @@
     <li class="list-group-item"><%= number_to_currency(product.price.to_f, delimiter: '', unit: '$') %></li>
     <li class="list-group-item"><small class="text-muted">In stock: <%= pluralize product.stock, "unit" %></small></li>
   </ul>
-  <div class="card-body align-items-end">
-    <div class="btn-group">
-      <%= link_to product , :class => "btn btn-sm btn-outline-secondary" do %>
-      <span><%= fa_icon "th-list" %></span>
-     <% end %>
-      <%= link_to add_to_cart_path( product_id: product.id,  quantity: 1), :class => 'btn btn-sm btn-outline-secondary' do %>
-      <span><%= fa_icon "cart-plus" %></span>
-     <% end %>
+  <div class="card-body ">
+    <div class="list-group list-group-horizontal">
+      <%= link_to product , :class => "list-group-item list-group-item-action list-group-item-secondary" do %>
+        <%= fa_icon "th-list" %>
+      <% end %>
+      <%= link_to add_to_cart_path( product_id: product.id,  quantity: 1), :class => 'list-group-item list-group-item-action list-group-item-secondary' do %>
+        <%= fa_icon "cart-plus" %>
+      <% end %>
       <% if user_signed_in? && current_user.admin? %>
-        <%= link_to edit_product_path(product), :class => "btn btn-sm btn-outline-secondary" do %>
-        <span><%= fa_icon "edit" %></span>
-     <% end %>
-        <%= button_to product, method: :delete, :class => "btn btn-sm btn-outline-secondary" do %>
-      <span><%= fa_icon "trash" %></span>
-     <% end %>
+        <%= link_to edit_product_path(product), :class => "list-group-item list-group-item-action list-group-item-secondary" do %>
+          <span><%= fa_icon "edit" %></span>
+        <% end %>
+        <%= button_to product, method: :delete, :class => "list-group-item list-group-item-action list-group-item-secondary" do %>
+          <span><%= fa_icon "trash" %></span>
+        <% end %>
       <% end %>
     </div>
   </div>
