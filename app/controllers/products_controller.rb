@@ -3,7 +3,9 @@ class ProductsController < ApplicationController
   before_action :set_brands
 
   def index
-    @products = Product.all
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true).includes(:brand)
+    @all_products = Product.count
   end
 
   # GET /discounts/1 or /discounts/1.json
@@ -12,21 +14,29 @@ class ProductsController < ApplicationController
   # GET /discounts/new
   def new
     @product = Product.new
+    @categories = Category.all
+    @product_categories = @product.product_categories.build
   end
 
   # GET /discounts/1/edit
-  def edit; end
+  def edit
+    @categories = Category.all
+    @product_categories = @product.product_categories
+  end
 
   def new_product_from_brand
     @product = Product.new
     @product.brand_id = params[:brand_id]
+    @categories = Category.all
+    @product_categories = @product.product_categories.build
   end
 
   def create
     @product = Product.new(product_params)
-
+    @categories = Category.all
     respond_to do |format|
       if @product.save
+        @product.save_categories
         format.html do
           redirect_to params[:in_brand].equal?(true) ? @product.brand : products_url,
                       notice: 'product was successfully created.'
@@ -40,9 +50,13 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /discounts/1 or /discounts/1.json
   def update
+    @categories = Category.all
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to brand_url(@product.brand), notice: 'Product was successfully updated.' }
+
+        @product.save_categories
+
+        format.html { redirect_to params[:in_brand].equal?(true) ? @product.brand : products_url , notice: 'Product was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -66,11 +80,13 @@ class ProductsController < ApplicationController
   end
 
   def set_brands
-    @brands = current_user.brands
+    unless current_user.nil?
+      @brands = current_user.brands
+    end
   end
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:name, :price, :stock, :image, :description, :brand_id)
+    params.require(:product).permit(:name, :price, :stock, :image, :description, :brand_id, category_elements: [])
   end
 end

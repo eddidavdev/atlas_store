@@ -1,26 +1,14 @@
-<div id="<%= dom_id profile %>">
-  <p>
-    <strong>Name:</strong>
-    <%= profile.name %>
-  </p>
-  <p>
-    <strong>Lastname:</strong>
-    <%= profile.lastname %>
-  </p>
-  <p>
-    <strong>Email:</strong>
-    <%= profile.email %>
-  </p>
-  <p>
-    <strong>Phone:</strong>
-    <%= profile.phone %>
-  </p>
-  <p>
-    <strong>Address:</strong>
-    <%= profile.address %>
-  </p>
-  <p>
-    <strong>Type:</strong>
-    <%= profile.client_type %>
-  </p>
+
+<div id="<%= dom_id profile %>" class="mb-3">
+<div class="card shadow-sm h-100 w-50">
+  <div class="card-body">
+    <h5 class="card-title"><%= profile.name %> <%= profile.lastname %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Email: <%= profile.email %> </li>
+    <li class="list-group-item">Phone: <%= profile.phone %> </li>
+    <li class="list-group-item">Address: <%= profile.address %> </li>
+    <li class="list-group-item">Type:  <%= profile.client_type %> </li>
+  </ul>
+  </div>
 </div>

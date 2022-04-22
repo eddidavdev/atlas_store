@@ -36,6 +36,13 @@
     <%= form.label :description, class: "form-label" %>
     <%= form.rich_text_area :description, class: "form-control" %>
   </div>
+  <div class="mb-3">
+  <% if product.categories.any? %>
+      <%= form.select :category_elements, options_for_select(@categories.collect{ |p| [ p.name, p.id ] },  :selected => product.categories.collect{|b| b.id}) ,{}, {:multiple => true, class: 'form-control js-searchable'} %>
+  <% else %>
+      <%= form.select :category_elements, options_for_select(@categories.collect{ |p| [ p.name, p.id ] }) ,{}, {:multiple => true, class: 'form-control js-searchable'} %>
+  <% end %>
+  </div>
   <%= form.hidden_field :in_brand, value: @in_brand %>
   <%= form.submit class: "btn btn-success"%>
 <% end %>

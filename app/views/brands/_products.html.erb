@@ -12,7 +12,7 @@
 <hr>
 <div id="products" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3 mb-4">
   <% @in_brand = true %>
-  <% brand.products.each do |product| %>
+  <% @brand.products.each do |product| %>
     <div  class="col">
       <%= render "products/product_card", product: product%>
     </div>

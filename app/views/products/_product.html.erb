@@ -13,6 +13,14 @@
       <span class="text-muted"><%= pluralize product.stock , "product" %> available in stock</span>
       <br>
       <%= product.description %>
+      <br>
+      <div class="row w-50 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-1 mb-4">
+      <% product.categories.each do |category| %>
+      <div class="col-auto">
+        <span class="badge bg-success"><%= category.name %> </span>
+        </div>
+      <% end %>
+      </div>
     </div>
   </div>
   <%= link_to "Add to cart", add_to_cart_path( product_id: product.id,  quantity: 1) , class:"btn btn-success my-4"  %>

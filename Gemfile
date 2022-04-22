@@ -76,3 +76,12 @@ gem 'devise'
 gem 'mini_magick'
 
 gem "font-awesome-rails"
+
+gem 'ransack'
+
+gem 'select2-rails'
+
+gem 'stimulus-rails'
+
+gem 'jquery-rails'
+

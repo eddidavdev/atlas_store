@@ -1,13 +1,13 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: %i[show edit update destroy]
-  
+
   # GET /brands or /brands.json
   def index
     @brands = Brand.all
   end
 
   # GET /brands/1 or /brands/1.json
-  def show; end
+  def show;  end
 
   # GET /brands/new
   def new

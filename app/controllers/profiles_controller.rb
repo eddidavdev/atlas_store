@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
+    @profile.client_type = profile_params[:client_type]
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
@@ -25,6 +26,7 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = current_user.build_profile(profile_params)
+    @profile.client_type = profile_params[:client_type]
 
     respond_to do |format|
       if @profile.save
