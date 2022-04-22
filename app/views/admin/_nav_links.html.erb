@@ -1,11 +1,23 @@
-<p>
-  <%= link_to "Admin", admin_path %> <%= " > #{params[:action].capitalize}" unless params[:action].eql?("index") %>
-</p>
-<nav>
-  <%= render "admin/link", resource: Brand %>
-  <%= render "admin/link", resource: Product %>
-  <%= render "admin/link", resource: Discount %>
-  <%= render "admin/link", resource: Order %>
-  <%= render "admin/link", resource: User %>
-  <%= render "admin/link", resource: Profile %>
-</nav>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+     <%= render "admin/link", resource: Brand %>
+  </li>
+  <li class="nav-item">
+    <%= render "admin/link", resource: Product %>
+  </li>
+  <li class="nav-item">
+    <%= render "admin/link", resource: Discount %>
+  </li>
+  <li class="nav-item">
+   <%= render "admin/link", resource: Order %>
+  </li>
+   <li class="nav-item">
+    <%= render "admin/link", resource: User %>
+  </li>
+   <li class="nav-item">
+    <%= render "admin/link", resource: Profile %>
+  </li>
+    <li class="nav-item">
+    <%= render "admin/link", resource: Category %>
+  </li>
+</ul>

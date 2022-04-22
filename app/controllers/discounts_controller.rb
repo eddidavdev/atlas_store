@@ -1,16 +1,7 @@
 class DiscountsController < ApplicationController
   before_action :set_discount, only: %i[ show edit update destroy ]
 
-  # GET /discounts or /discounts.json
-  def index
-    @discounts = Discount.all
-  end
-
-  # GET /discounts/1 or /discounts/1.json
-  def show
-  end
-
-  # GET /discounts/new
+ # GET /discounts/new
   def new
     @discount = Discount.new
   end
@@ -25,7 +16,7 @@ class DiscountsController < ApplicationController
 
     respond_to do |format|
       if @discount.save
-        format.html { redirect_to discount_url(@discount), notice: "Discount was successfully created." }
+        format.html { redirect_to admin_discounts_url, notice: "Discount was successfully created." }
         format.json { render :show, status: :created, location: @discount }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +29,7 @@ class DiscountsController < ApplicationController
   def update
     respond_to do |format|
       if @discount.update(discount_params)
-        format.html { redirect_to discount_url(@discount), notice: "Discount was successfully updated." }
+        format.html { redirect_to admin_discounts_url, notice: "Discount was successfully updated." }
         format.json { render :show, status: :ok, location: @discount }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +43,7 @@ class DiscountsController < ApplicationController
     @discount.destroy
 
     respond_to do |format|
-      format.html { redirect_to discounts_url, notice: "Discount was successfully destroyed." }
+      format.html { redirect_to admin_discounts_url, notice: "Discount was successfully destroyed." }
       format.json { head :no_content }
     end
   end

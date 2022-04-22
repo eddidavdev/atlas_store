@@ -16,9 +16,10 @@
 </div>
 <hr>
 <div class="row mb-3">
-  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-    <input type="search" class="form-control form-control-dark" placeholder="Search product..." aria-label="Search">
-  </form>
+
+<% if @all_products > 5 %>
+<%= render 'products/form_search'%>
+<% end %>
 </div>
 <div id="products" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3 mb-4">
   <% @products.each do |product| %>

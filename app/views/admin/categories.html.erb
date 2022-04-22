@@ -2,7 +2,7 @@
 <%= render 'admin/nav_links'%>
 
 <div class="p-3">
-<%= link_to "New discount", new_discount_path , class: "btn btn-primary"%>
+<%= link_to "New category", new_category_path , class: "btn btn-primary"%>
 </div>
 
 <div class="table-responsive">
@@ -10,20 +10,18 @@
   <thead>
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Percent</th>
       <th colspan=1  class="text-center">Action</th>
     </tr>
   </thead>
   <tbody>
-    <% @discounts.each do |discount| %>
+    <% @categories.each do |category| %>
       <tr>
-        <td><%= discount.name %></td>
-        <td><%= discount.percent %></td>
+        <td><%= category.name %></td>
         <td>
-          <%= link_to "Edit", edit_discount_path(discount), class: "btn btn-primary" %>
+          <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary" %>
         </td>
         <td>
-          <%= button_to "Delete", discount, method: :delete, class: "btn btn-danger" %>
+          <%= button_to "Delete", category, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
         </td>
     <% end %>
   </tbody>

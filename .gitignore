@@ -33,3 +33,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/db/schema.rb
+/Gemfile.lock
+/node_modules/*
+/yarn.lock

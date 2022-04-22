@@ -1,9 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
-  enum client_type: %i[client gym_owner trainner]
-
-  after_initialize :set_default_type, if: :new_record?
+  enum client_type_value: %i[client gym_owner trainner]
 
   private
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   resources :banners
   authenticated :user, ->(user) { user.admin? } do
     resources :discounts
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
     get 'admin/orders'
     get 'admin/users'
     get 'admin/profiles'
+    get 'admin/categories'
   end
 
   resources :order_items
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
   get 'shopping-cart', to: 'orders#current'
   get 'add_to_cart', to: 'orders#add_to_cart'
   get 'cancel_order', to: 'orders#cancel'
+  get 'search', to: 'products#search'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
