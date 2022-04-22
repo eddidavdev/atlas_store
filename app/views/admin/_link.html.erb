@@ -1,1 +1,5 @@
-<%= link_to resource.name.capitalize, url_for([:admin, resource]) %>
+<% if resource.name.eql?(@current_page) %>
+    <%= link_to resource.name.capitalize, url_for([:admin, resource]) , class: "nav-link active" %>
+<% else %>
+ <%= link_to resource.name.capitalize, url_for([:admin, resource]) , class: "nav-link" %>
+<% end %>

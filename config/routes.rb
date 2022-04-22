@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'admin/orders'
     get 'admin/users'
     get 'admin/profiles'
+    get 'admin/categories'
   end
 
   resources :order_items
