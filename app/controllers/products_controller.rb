@@ -56,7 +56,10 @@ class ProductsController < ApplicationController
 
         @product.save_categories
 
-        format.html { redirect_to params[:in_brand].equal?(true) ? @product.brand : products_url , notice: 'Product was successfully updated.' }
+        format.html do
+          redirect_to params[:in_brand].equal?(true) ? @product.brand : products_url,
+                      notice: 'Product was successfully updated.'
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -80,9 +83,7 @@ class ProductsController < ApplicationController
   end
 
   def set_brands
-    unless current_user.nil?
-      @brands = current_user.brands
-    end
+    @brands = current_user.brands unless current_user.nil?
   end
 
   # Only allow a list of trusted parameters through.

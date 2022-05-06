@@ -1,2 +1,55 @@
 <h3>Administrator</h3>
 <%= render 'admin/nav_links'%>
+<div class="table-responsive">
+  <table class="table table-striped table-hover my-4">
+    <thead>
+      <tr>
+        <th scope="col">Created By</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Updated at</th>
+        <th scope="col">Receiver</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Total</th>
+        <th scope="col">Status</th>
+        <th colspan=3 scope="col" class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @orders.size == 0 %>
+        <tr>
+          <td colspan=9>
+            <span>No orders</span>
+          </td>
+        </tr>
+      <% end %>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.user.email %></td>
+          <td><%= order.created_at %></td>
+          <td><%= order.updated_at %></td>
+          <td><%= order.receiver %></td>
+          <td><%= order.phone %></td>
+          <td><%= order.email %></td>
+          <td><%= order.address %></td>
+          <td><%= order.total %></td>
+          <td><%= order.status %></td>
+          <td>
+            <%= link_to "Show", order, class: "btn btn-info" %>
+          </td>
+          <td>
+            <% unless order.cant_update? %>
+              <%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %>
+            <% end %>
+          </td>
+          <td>
+            <% unless order.cant_update? %>
+              <%= link_to "Cancel", cancel_order_path( id: order.id), class: "btn btn-danger"%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

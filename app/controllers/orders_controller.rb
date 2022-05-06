@@ -44,6 +44,11 @@ class OrdersController < ApplicationController
   def cancel
     @order.status = 'cancelled'
 
+    @order.order_items.each do |item|
+      item.product.stock += item.quantity
+      item.product.save
+    end
+
     respond_to do |format|
       if @order.save
         format.html { redirect_to orders_path, notice: 'Order was successfully cancelled.' }

@@ -31,7 +31,7 @@
   </div>
   <div class="mb-3">
     <%= form.label :client_type, class: "form-label" %>
-    <%= select_tag :client_type, options_for_select(Profile.client_type_values.map {|v, k| [v.humanize.capitalize, k]}, Profile.client_type_values[profile.client_type]), class: "form-select" %>
+    <%= form.select :client_type, options_for_select(Profile.client_type_values.map {|v, k| [v.humanize.capitalize, k]},  :selected => profile.client_type) ,{}, { class: 'form-select'} %>
   </div>
   <%= form.hidden_field :user_id %>
   <div class="mb-3">
