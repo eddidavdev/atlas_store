@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'admin/users'
     get 'admin/profiles'
     get 'admin/categories'
+    get 'admin/banners'
   end
 
   resources :order_items
