@@ -1,4 +1,15 @@
 <%# <%= render 'layouts/featurettes' %>
+<% if(!@banner.nil?) %>
+<div class="card mb-3">
+<div class="text-center">
+ <%= link_to image_tag(@banner.image_as_thumbnail(500), class:"rounded", height:'100px', preserveAspectRatio: "xMidYMid slice"), @banner.image if @banner.image.attached?  %>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= @banner.description %></p>
+    <p class="card-text"><%= @banner.freq %></p>
+  </div>
+</div>
+<% end %>
 <div class="px-4 py-5 my-5 text-center">
   <img class="d-block mx-auto mb-4" src="logo.jpg" alt=""  height="100">
   <h1 class="display-5 fw-bold">Atlas</h1>
@@ -26,3 +37,5 @@
     </div>
   </div>
 </div>
+
+

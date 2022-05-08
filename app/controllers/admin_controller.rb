@@ -35,4 +35,9 @@ class AdminController < ApplicationController
     @categories = Category.all
     @current_page = 'Category'
   end
+
+  def banners
+    @banners = Banner.all
+    @current_page = 'Banner'
+  end
 end
