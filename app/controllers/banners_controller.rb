@@ -65,6 +65,6 @@ class BannersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def banner_params
-      params.require(:banner).permit(:description, :title, :link, :active)
+      params.require(:banner).permit(:description, :title, :link, :active, :image, :freq, :customer)
     end
 end

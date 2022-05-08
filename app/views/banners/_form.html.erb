@@ -25,9 +25,17 @@
     <%= form.label :description, class: "form-label" %>
     <%= form.rich_text_area :description, class: "form-control" %>
   </div>
-  <div class="mb-3">
+   <div class="mb-3">
     <%= form.label :image, class: "form-label" %>
     <%= form.file_field :image, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Frequency", class: "form-label" %>
+    <%= form.number_field :freq, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :customer, class: "form-label" %>
+    <%= form.text_field :customer, class: "form-control" %>
   </div>
    <div class="mb-3">
     <%= form.submit class: "btn btn-success" %>
